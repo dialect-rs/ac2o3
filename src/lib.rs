@@ -289,6 +289,8 @@ impl AndersonAccel {
 
 #[cfg(test)]
 mod tests {
+    use rand::prelude::*;
+    use rand_pcg::Pcg64;
     use rand::distributions::{Uniform, Distribution};
     use crate::{AndersonAccelBuilder};
     use ndarray::{Array1, Array2, ArrayView1, ArrayView2};
@@ -296,6 +298,7 @@ mod tests {
     use ndarray_linalg::Norm;
     use crate::AAType;
 
+    pub const SEED: u64 = 1234;
     pub const DIM: usize = 100;
     pub const MEM: usize = 5;
     pub const TYPE1_REGULARIZATION: f64 = 1e-3;
@@ -307,13 +310,13 @@ mod tests {
 
     /// Returns a uniform random array with values in [-1, 1] of size `dim`.
     fn rand_x(dim: usize) -> Array1<f64> {
-        let mut rng = rand::thread_rng();
+        let mut rng = Pcg64::seed_from_u64(SEED);
         let die = Uniform::new(-1.0, 1.0);
         Array1::from_iter((0..dim).map(|_| die.sample(&mut rng)))
     }
 
     fn rand_q(dim: usize) -> Array2<f64> {
-        let mut rng = rand::thread_rng();
+        let mut rng = Pcg64::seed_from_u64(SEED);
         // Generate random values between [-1, 1].
         let die = Uniform::new(-1.0, 1.0);
         let vec: Vec<f64> = (0..(dim*dim)).map(|_| die.sample(&mut rng)).collect();
