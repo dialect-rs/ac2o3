@@ -357,7 +357,7 @@ mod tests {
             y = f(x.view(), q.view());
             err = x.norm_l2();
         }
-        assert!(err < 1e-6);
+        assert!(err < 1e-5);
     }
 
     #[test]
