@@ -289,7 +289,6 @@ impl AndersonAccel {
 
 #[cfg(test)]
 mod tests {
-    use rand;
     use rand::distributions::{Uniform, Distribution};
     use crate::{AndersonAccelBuilder};
     use ndarray::{Array1, Array2, ArrayView1, ArrayView2};
