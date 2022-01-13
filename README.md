@@ -1,4 +1,6 @@
 # Ac<sub>2</sub>O<sub>3</sub>
+[![CI](https://github.com/dialect-rs/ac2o3/actions/workflows/CI.yml/badge.svg)](https://github.com/dialect-rs/ac2o3/actions/workflows/CI.yml)
+
 
 Rust implementation of an Anderson Acceleration algorithm based on Ref [1].<br>
 Please note: There is an original [Matlab implementation](https://web.stanford.edu/~boyd/papers/nonexp_global_aa1.html)
@@ -9,8 +11,9 @@ Ac<sub>2</sub>O<sub>3</sub> is a port of the C implementation to Rust.
 
 ### References:<br>
 <hr>
-[1]: J. Zhang, B. O'Donoghue, and S. Boyd, Globally Convergent Type-I Anderson Acceleration for Non-Smooth Fixed-Point Iterations
-SIAM Journal on Optimization, 30(4):3170–3197, 2020. [Link](https://web.stanford.edu/~boyd/papers/nonexp_global_aa1.html)
+[1]: J. Zhang, B. O'Donoghue, and S. Boyd, <a href="https://web.stanford.edu/~boyd/papers/pdf/scs_2.0_v_global.pdf">Globally
+  Convergent Type-I Anderson Acceleration for Non-Smooth Fixed-Point Iterations</a>, 30(4):3170–3197, 2020. 
+SIAM Journal on Optimization
 
 License
 =======
