@@ -367,7 +367,7 @@ mod tests {
 
     #[test]
     fn gd_type1_relaxl1() {
-        gradient_descent(AAType::I, 0.7);
+        gradient_descent(AAType::I, 0.98);
     }
 
     #[test]
@@ -377,6 +377,6 @@ mod tests {
 
     #[test]
     fn gd_type2_relaxl1() {
-        gradient_descent(AAType::II, 0.95);
+        gradient_descent(AAType::II, 0.98);
     }
 }
