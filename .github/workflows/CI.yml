@@ -44,6 +44,7 @@ jobs:
           elif [ "$RUNNER_OS" == "macOS" ]; then
             /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
             brew install openblas
+            export LIBRARY_PATH=/opt/homebrew/Cellar/
           fi
       - name: test
         run: cargo test
