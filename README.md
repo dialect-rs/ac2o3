@@ -8,26 +8,35 @@ as well as a slightly modified [implementation in C](https://www.cvxgrp.org/scs/
 a Python interface) by the authors of the paper.<br>
 Ac<sub>2</sub>O<sub>3</sub> is a port of the C implementation to Rust.
 
+### Dependencies
+Building Ac<sub>2</sub>O<sub>3</sub> requires the following to be installed: 
+- OpenBLAS: <br>
+On linux systems you can either install it by just executing `sudo apt-get install libopenblas-dev` or follow 
+the instructions on the [repository page](https://github.com/xianyi/OpenBLAS).
+On macOS OpenBLAS can be installed using [HomeBrew](): `brew install openblas`. Make sure that the homebrew path is 
+ included in `$LIBRARY_PATH`. So you might need to execute: <br>
+  `export LIBRARY_PATH=/opt/homebrew/Cellar/:$LIBRARY_PATH` (on Apple Silicon/M1 processors)<br>
+  `export LIBRARY_PATH=/usr/local/Cellar/:$LIBRARY_PATH` (on Intel processors)<br>
 
+  
 ### References:<br>
 <hr>
 [1]: J. Zhang, B. O'Donoghue, and S. Boyd, <a href="https://web.stanford.edu/~boyd/papers/pdf/scs_2.0_v_global.pdf">Globally
   Convergent Type-I Anderson Acceleration for Non-Smooth Fixed-Point Iterations</a>, 30(4):3170–3197, 2020. 
 SIAM Journal on Optimization
 
-License
-=======
 
-Dual-licensed to be compatible with the Rust project.
+#### License
 
-Licensed under the Apache License, Version 2.0
-http://www.apache.org/licenses/LICENSE-2.0 or the MIT license
-http://opensource.org/licenses/MIT, at your
-option. This file may not be copied, modified, or distributed
-except according to those terms.
+<sup>
+Licensed under either of <a href="LICENSE-APACHE">Apache License, Version
+2.0</a> or <a href="LICENSE-MIT">MIT license</a> at your option.
+</sup>
 
-### Contribution
+<br>
 
+<sub>
 Unless you explicitly state otherwise, any contribution intentionally submitted
-for inclusion in this project by you, shall be licensed as MIT or Apache 2.0,
-without any additional terms or conditions.
+for inclusion in this crate by you, as defined in the Apache-2.0 license, shall
+be dual licensed as above, without any additional terms or conditions.
+</sub>
