@@ -28,7 +28,6 @@ jobs:
     strategy:
       matrix:
         os:
-          - windows-latest
           - ubuntu-latest
           - macos-latest
     steps:
@@ -38,10 +37,12 @@ jobs:
       - uses: Swatinem/rust-cache@v1
       - name: Install cargo-hack
         run: cargo install cargo-hack
-
+      - name: Install OpenBlas Dependencies
+        run: |
+          if [ "$RUNNER_OS" == "Linux" ]; then
+            sudo apt-get install libopenblas-dev
       - name: test
         run: cargo test
-
       # Test **all** crates in the workspace.
       - name: test all --all-features
         run: cargo test --workspace --all-features
