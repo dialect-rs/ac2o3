@@ -1,0 +1,62 @@
+on:
+  push:
+    branches: ["master"]
+  pull_request:
+    branches: ["master"]
+
+name: CI
+
+env:
+  RUSTFLAGS: -Dwarnings
+  RUST_BACKTRACE: 1
+  nightly: nightly-2021-10-25
+
+jobs:
+  # Depends on all actions that are required for a "successful" CI run.
+  tests-pass:
+    name: all systems go
+    runs-on: ubuntu-latest
+    needs:
+      - test
+      - clippy
+    steps:
+      - run: exit 0
+
+  test:
+    name: test
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - windows-latest
+          - ubuntu-latest
+          - macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Rust
+        run: rustup update stable
+      - uses: Swatinem/rust-cache@v1
+      - name: Install cargo-hack
+        run: cargo install cargo-hack
+
+      - name: test
+        run: cargo test
+
+      # Test **all** crates in the workspace.
+      - name: test all --all-features
+        run: cargo test --workspace --all-features
+
+  clippy:
+    name: clippy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Rust
+        run: rustup update
+      - uses: Swatinem/rust-cache@v1
+      - name: Install clippy
+        run: rustup component add clippy
+
+      # Run clippy
+      - name: "clippy --all"
+        run: cargo clippy --all --tests
