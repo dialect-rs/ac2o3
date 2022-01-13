@@ -41,6 +41,9 @@ jobs:
         run: |
           if [ "$RUNNER_OS" == "Linux" ]; then
             sudo apt-get install libopenblas-dev
+          elif [ "$RUNNER_OS" == "macOS" ]; then
+            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+            brew install openblas
           fi
       - name: test
         run: cargo test
