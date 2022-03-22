@@ -8,14 +8,14 @@ use std::ops::AddAssign;
 pub const REGULARIZATION_TYPE_I: f64 = 1e-8;
 pub const REGULARIZATION_TYPE_II: f64 = 1e-10;
 
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, Debug)]
 pub enum AAType {
     I,
     II,
 }
 
 /// Anderson mixing scheme may be reduced to vanilla KM mixing by setting the `memory` to zero.
-#[derive(Builder, Clone)]
+#[derive(Builder, Clone, Debug)]
 pub struct AndersonAccel {
     /// Dimension of the vector.
     #[allow(dead_code)]
