@@ -9,7 +9,7 @@ use std::ops::AddAssign;
 pub const REGULARIZATION_TYPE_I: f64 = 1e-8;
 pub const REGULARIZATION_TYPE_II: f64 = 1e-10;
 
-#[derive(Serialize_repr, Deserialize_repr, Copy, Clone, Debug)]
+#[derive(Serialize_repr, Deserialize_repr, Copy, Clone, Debug, PartialEq)]
 #[repr(u8)]
 pub enum AAType {
     I = 1,
