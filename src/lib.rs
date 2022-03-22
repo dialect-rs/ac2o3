@@ -2,16 +2,18 @@ use anyhow::{Context, Result};
 use derive_builder::Builder;
 use ndarray::prelude::*;
 use ndarray_linalg::{Norm, Solve};
+use serde_repr::{Serialize_repr, Deserialize_repr};
 use std::cmp::Ordering;
 use std::ops::AddAssign;
 
 pub const REGULARIZATION_TYPE_I: f64 = 1e-8;
 pub const REGULARIZATION_TYPE_II: f64 = 1e-10;
 
-#[derive(Copy, Clone, Debug)]
+#[derive(Serialize_repr, Deserialize_repr, Copy, Clone, Debug)]
+#[repr(u8)]
 pub enum AAType {
-    I,
-    II,
+    I = 1,
+    II = 2,
 }
 
 /// Anderson mixing scheme may be reduced to vanilla KM mixing by setting the `memory` to zero.
