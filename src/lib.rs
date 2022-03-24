@@ -21,7 +21,7 @@ pub enum AAType {
 pub struct AndersonAccel {
     /// Dimension of the vector.
     #[allow(dead_code)]
-    dim: usize,
+    pub dim: usize,
     /// Number of vectors to store.
     memory: usize,
     /// Current iteration.
@@ -49,7 +49,7 @@ pub struct AndersonAccel {
     norm_g: f64,
     /// Input vector of last iteration: | x_(i-1) >
     #[builder(default = "None", setter(skip))]
-    old_x: Option<Array1<f64>>,
+    pub old_x: Option<Array1<f64>>,
     /// Output vector of last iteration: | F_(i-1) >
     #[builder(default = "None", setter(skip))]
     old_f: Option<Array1<f64>>,
