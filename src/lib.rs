@@ -2,7 +2,7 @@ use anyhow::{Context, Result};
 use derive_builder::Builder;
 use ndarray::prelude::*;
 use ndarray_linalg::{Norm, Solve};
-use serde_repr::{Serialize_repr, Deserialize_repr};
+use serde_repr::{Deserialize_repr, Serialize_repr};
 use std::cmp::Ordering;
 use std::ops::AddAssign;
 
@@ -26,7 +26,7 @@ pub struct AndersonAccel {
     memory: usize,
     /// Current iteration.
     #[builder(default = "0", setter(skip))]
-    iter: usize,
+    pub iter: usize,
     /// Type of Anderson Accelerator (can be type-I or type-II).
     aa_type: AAType,
     /// Mixing parameter β: |x_i+1 > = |x_i > + β * | F_i >
@@ -291,14 +291,14 @@ impl AndersonAccel {
 
 #[cfg(test)]
 mod tests {
+    use crate::AAType;
+    use crate::AndersonAccelBuilder;
+    use ndarray::{Array1, Array2, ArrayView1, ArrayView2};
+    use ndarray_linalg::Norm;
+    use rand::distributions::{Distribution, Uniform};
     use rand::prelude::*;
     use rand_pcg::Pcg64;
-    use rand::distributions::{Uniform, Distribution};
-    use crate::{AndersonAccelBuilder};
-    use ndarray::{Array1, Array2, ArrayView1, ArrayView2};
     use std::ops::AddAssign;
-    use ndarray_linalg::Norm;
-    use crate::AAType;
 
     pub const SEED: u64 = 1234;
     pub const DIM: usize = 100;
@@ -321,7 +321,7 @@ mod tests {
         let mut rng = Pcg64::seed_from_u64(SEED);
         // Generate random values between [-1, 1].
         let die = Uniform::new(-1.0, 1.0);
-        let vec: Vec<f64> = (0..(dim*dim)).map(|_| die.sample(&mut rng)).collect();
+        let vec: Vec<f64> = (0..(dim * dim)).map(|_| die.sample(&mut rng)).collect();
         let qhalf = Array2::from_shape_vec((dim, dim), vec).unwrap();
         let mut q: Array2<f64> = qhalf.t().dot(&qhalf);
         // Add a small amount of regularization.
@@ -340,7 +340,7 @@ mod tests {
         let q = rand_q(DIM);
         let mut err = f64::NAN;
 
-        let mut y = f(x.view(),  q.view());
+        let mut y = f(x.view(), q.view());
         let reg = match aa_type {
             AAType::I => TYPE1_REGULARIZATION,
             AAType::II => TYPE2_REGULARIZATION,
