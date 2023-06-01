@@ -46,7 +46,7 @@ pub struct AndersonAccel {
     norm: f64,
     /// || |x_i> - |F_i> ||_2
     #[builder(default = "0.0", setter(skip))]
-    norm_g: f64,
+    pub norm_g: f64,
     /// Input vector of last iteration: | x_(i-1) >
     #[builder(default = "None", setter(skip))]
     pub old_x: Option<Array1<f64>>,
